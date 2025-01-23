@@ -8,8 +8,9 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post()
-  create(@Body() createAuthDto: CreateAuthDto) {
-    return this.authService.create(createAuthDto);
+  async create(@Body() createAuthDto: CreateAuthDto) {
+    const res =  this.authService.create(createAuthDto);
+    return res;
   }
 
   @Get()
