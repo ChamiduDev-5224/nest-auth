@@ -11,4 +11,6 @@ export class CreateAuthDto {
     @MinLength(8)
     @IsStrongPassword()
     password:string;
+    @IsNotEmpty()
+    status:number;
 }
