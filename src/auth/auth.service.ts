@@ -6,7 +6,13 @@ import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
-  constructor(private prisma:PrismaService){}
+  constructor(private readonly prisma:PrismaService){}
+
+  passwordHash(password:string){
+   return bcrypt.hash(password, 4);
+
+  }
+
 
  async create(createAuthDto: CreateAuthDto) {
 
@@ -22,8 +28,7 @@ export class AuthService {
     }
 
     //password hashing 
-    const hashPassword = await bcrypt.hash(createAuthDto.password, 4);
-
+    const hashPassword = await this.passwordHash(createAuthDto.password);
     //add data 
     return this.prisma.user.create({
     data:{
