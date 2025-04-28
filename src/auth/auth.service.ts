@@ -10,9 +10,7 @@ export class AuthService {
 
   passwordHash(password:string){
    return bcrypt.hash(password, 4);
-
   }
-
 
  async create(createAuthDto: CreateAuthDto) {
 
